@@ -20,7 +20,6 @@ from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
-from cart.cart import Cart
 
 
 # Create your views here.
@@ -33,8 +32,20 @@ class IndexView(TemplateView):
 		products = Product.objects.all() 
 		context["products"] = products
 		return context
-	
 
+class CartView(TemplateView):
+	template_name = 'main/cart.html'
+
+class ProductDetailView(TemplateView):
+	template_name = 'main/product_detail.html'
+	# model = Product
+	# context_object_name = 'product'
+
+class CategoryView(TemplateView):
+	template_name = 'main/category.html'
+
+class CheckOutView(TemplateView):
+	template_name = 'main/checkout.html'	
 
 class AddProductView(CreateView):
 	template_name = 'main/add_product.html'

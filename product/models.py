@@ -33,7 +33,8 @@ class Product(models.Model):
         show_all=False,
         auto_choose=True,
         sort=True, 
-		null=True, blank=True,
+		null=True, 
+		blank=True,
 		)
 	image = models.ImageField(upload_to='products/')
 	price = models.FloatField(default=0)
@@ -49,9 +50,8 @@ class Product(models.Model):
 	free_delivery = models.BooleanField(default=False)
 	delivery_fee = models.FloatField(null=True, blank=True)
 	slug = AutoSlugField(
-		populate_from=lambda instance: instance.name,
+		populate_from=('name'),
                          unique_with=['owner__userprofile__id', 'date_created'],
-                         slugify=lambda value: value.replace(' ','-')
 	)
 
 

@@ -16,7 +16,7 @@ class ProductForm(forms.ModelForm):
 	}))
 	class Meta:
 		model = Product
-		fields = ['name', 'price', 'marked_price', 'category', 'description','quantity', 'contact',
+		fields = ['name', 'price', 'marked_price', 'category', 'subcategory','description','quantity', 'contact',
 		 'town', 'warranty', 'return_policy', 'free_delivery', 'delivery_fee','image']
 
 		widgets = {

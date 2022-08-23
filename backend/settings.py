@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django_autoslug',
     'cart',
+    'smart_selects',
 ]
 
 MIDDLEWARE = [
@@ -248,3 +249,5 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('SOCIAL_AUTH_FACEBOOK_SECRET')
 
 GOOGLE_APPLICATION_CREDENTIALS = os.path.join(
     BASE_DIR, 'dantorial-bdef7-9833c8c7d45c.json')
+
+JQUERY_URL = True

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 from autoslug import AutoSlugField
 from accounts.models import *
+from smart_selects.db_fields import ChainedForeignKey
 # Create your models here.
 
 class Category(models.Model):
@@ -25,7 +26,15 @@ class Product(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 	name = models.CharField(max_length=200)
 	category =models.ForeignKey(Category, on_delete=models.CASCADE)
-	subcategory =models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True)
+	subcategory = ChainedForeignKey(
+        SubCategory,
+        chained_field="category",
+        chained_model_field="category",
+        show_all=False,
+        auto_choose=True,
+        sort=True, 
+		null=True, blank=True,
+		)
 	image = models.ImageField(upload_to='products/')
 	price = models.FloatField(default=0)
 	marked_price = models.FloatField(null=True, blank=True)
